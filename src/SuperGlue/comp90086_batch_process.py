@@ -1,48 +1,4 @@
 #! /usr/bin/env python3
-#
-# %BANNER_BEGIN%
-# ---------------------------------------------------------------------
-# %COPYRIGHT_BEGIN%
-#
-#  Magic Leap, Inc. ("COMPANY") CONFIDENTIAL
-#
-#  Unpublished Copyright (c) 2020
-#  Magic Leap, Inc., All Rights Reserved.
-#
-# NOTICE:  All information contained herein is, and remains the property
-# of COMPANY. The intellectual and technical concepts contained herein
-# are proprietary to COMPANY and may be covered by U.S. and Foreign
-# Patents, patents in process, and are protected by trade secret or
-# copyright law.  Dissemination of this information or reproduction of
-# this material is strictly forbidden unless prior written permission is
-# obtained from COMPANY.  Access to the source code contained herein is
-# hereby forbidden to anyone except current COMPANY employees, managers
-# or contractors who have executed Confidentiality and Non-disclosure
-# agreements explicitly covering such access.
-#
-# The copyright notice above does not evidence any actual or intended
-# publication or disclosure  of  this source code, which includes
-# information that is confidential and/or proprietary, and is a trade
-# secret, of  COMPANY.   ANY REPRODUCTION, MODIFICATION, DISTRIBUTION,
-# PUBLIC  PERFORMANCE, OR PUBLIC DISPLAY OF OR THROUGH USE  OF THIS
-# SOURCE CODE  WITHOUT THE EXPRESS WRITTEN CONSENT OF COMPANY IS
-# STRICTLY PROHIBITED, AND IN VIOLATION OF APPLICABLE LAWS AND
-# INTERNATIONAL TREATIES.  THE RECEIPT OR POSSESSION OF  THIS SOURCE
-# CODE AND/OR RELATED INFORMATION DOES NOT CONVEY OR IMPLY ANY RIGHTS
-# TO REPRODUCE, DISCLOSE OR DISTRIBUTE ITS CONTENTS, OR TO MANUFACTURE,
-# USE, OR SELL ANYTHING THAT IT  MAY DESCRIBE, IN WHOLE OR IN PART.
-#
-# %COPYRIGHT_END%
-# ----------------------------------------------------------------------
-# %AUTHORS_BEGIN%
-#
-#  Originating Authors: Paul-Edouard Sarlin
-#                       Daniel DeTone
-#                       Tomasz Malisiewicz
-#
-# %AUTHORS_END%
-# --------------------------------------------------------------------*/
-# %BANNER_END%
 
 from pathlib import Path
 import argparse
@@ -59,16 +15,14 @@ torch.set_grad_enabled(False)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        description='SuperGlue demo',
+        description='COMP90086 SuperGlue Image matching',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument(
         '--train_images', type=str, default='0',
-        help='ID of a USB webcam, URL of an IP camera, '
-             'or path to an image directory or movie file')
+        help='Path to folder containing training images')
     parser.add_argument(
         '--test_images', type=str, default='0',
-        help='ID of a USB webcam, URL of an IP camera, '
-             'or path to an image directory or movie file')
+        help='Path to folder containing test images')
     parser.add_argument(
         '--output_dir', type=str, default=None,
         help='Directory where to write output frames (If None, no output)')
@@ -148,8 +102,6 @@ if __name__ == '__main__':
     matching = Matching(config).eval().to(device)
     keys = ['keypoints', 'scores', 'descriptors']
 
-    vs_train = VideoStreamer(opt.train_images, opt.resize, opt.skip,
-                       opt.image_glob, opt.max_length)
     vs_test = VideoStreamer(opt.test_images, opt.resize, opt.skip,
                        opt.image_glob, opt.max_length)
 
@@ -159,7 +111,7 @@ if __name__ == '__main__':
     while True:
         query_frame, ret = vs_test.next_frame()
         if not ret:
-            print('Finished demo_superglue.py')
+            print('Finished processing of test images')
             break
 
         num_max_matches = 0
@@ -175,10 +127,13 @@ if __name__ == '__main__':
             print('==> Will write outputs to {}'.format(opt.output_dir))
             Path(opt.output_dir).mkdir(exist_ok=True)
 
+        vs_train = VideoStreamer(opt.train_images, opt.resize, opt.skip,
+                    opt.image_glob, opt.max_length)
         while True:
+
             database_frame, ret = vs_train.next_frame()
             if not ret:
-                print('Finished demo_superglue.py')
+                print('Finished processing query image ', query_last_image_id)
                 break
             stem0, stem1 = query_last_image_id, vs_train.i - 1
 
@@ -227,12 +182,14 @@ if __name__ == '__main__':
         # Add best match to list
         list_of_best_matches.append(best_match)
 
-        best_matches_file = open("best_matches.txt", "w")
+        best_matches_file = open("comp90086_best_matches.txt", "w")
         for element in list_of_best_matches:
             best_matches_file.write(str(element) + "\n")
         best_matches_file.close()
 
         query_last_image_id += 1
+        
+        vs_train.cleanup()
 
-    vs_train.cleanup()
+
     vs_test.cleanup()
