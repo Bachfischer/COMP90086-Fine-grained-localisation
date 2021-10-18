@@ -22,6 +22,32 @@ cd Hierarchical-Localization/datasets/COMP90086
 kaggle competitions download -c comp90086-2021
 unzip comp90086-2021.zip
 
+
+## Image Similiarity
+
+| Experiment                                  | Filename                                              | Score    |
+|---------------------------------------------|-------------------------------------------------------|----------|
+| ImageSimilarity w/ Rescale (10 epochs)      | `submission_ImageSimilarity_w_Rescale_10_epochs.csv`  | 61.58458 |
+| ImageSimilarity w/ Rescale (20 epochs)      | `submission_ImageSimilarity_w_Rescale_20_epochs.csv`  |          |
+| ImageSimilarity without Rescale (10 Epochs) |                                                       |          |
+| ImageSimilarity without Rescale (20 Epochs) |                                                       |          |
+
+
+## SuperGlue
+
+Visualization:
+
+python match_pairs.py --input_pairs input_pairs.txt --input_dir ./data/COMP90086_2021_Project_train/train/ --viz --resize -1
+
+
+python demo_superglue.py --input  ./data/COMP90086_2021_Project_train/train/ --resize -1 --output_dir  dump_demo_sequence
+
+
+python comp_batch_process.py --train_images  ./data/COMP90086_2021_Project_train/train/ --test_images ./data/COMP90086_2021_Project_test/test --resize -1 --output_dir  dump_demo_sequence
+
+## hloc
+
+
 ### Prepare folder structure
 mkdir images
 mkdir images/train
@@ -29,8 +55,6 @@ mkdir images/test
 
 cp COMP90086_2021_Project_train/train/* images/train/
 cp COMP90086_2021_Project_test/test/* images/test/
-
-## hloc
 
 git clone --recursive https://github.com/cvg/Hierarchical-Localization/
 cd Hierarchical-Localization/
