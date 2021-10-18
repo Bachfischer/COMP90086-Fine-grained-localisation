@@ -41,7 +41,8 @@ def generate_pairs_db_covis_file():
         next(reader, None)  
 
         for row in reader:
-            left_file_name = "train/" + row[0] + ".jpg"
+            #left_file_name = "train/" + row[0] + ".jpg"
+            left_file_name = row[0] + ".jpg"
 
             # Remove last chars
             first_file_name = row[0][:-1]
@@ -51,7 +52,8 @@ def generate_pairs_db_covis_file():
             
             for i in range(1, 6):
                 if str(i) != file_number:
-                    right_file_name = " train/" + first_file_name + str(i) + ".jpg"
+                    #right_file_name = " train/" + first_file_name + str(i) + ".jpg"
+                    right_file_name = " " + first_file_name + str(i) + ".jpg"
                     output_line = left_file_name + right_file_name
                     outfile.write(output_line + '\n')
 

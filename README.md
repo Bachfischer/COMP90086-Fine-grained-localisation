@@ -40,6 +40,46 @@ sudo apt-get install colmap
 pip install pycolmap
 
 
+### Inspect embedding files
+
+import h5py
+
+hfile = h5py.File('feats-superpoint-n4096-r1024_matches-superglue_pairs-manual-db-covis5.h5', 'r')
+hfile = h5py.File('feats-superpoint-n4096-r1024.h5', 'r')
+
+
+### Reconstruction
+
+Geometric verification
+
+colmap matches_importer --database_path outputs/COMP90086/sfm_superpoint+superglue/database.db --match_list_path outputs/COMP90086/pairs-manual-db-covis5.txt --match_type pairs --SiftMatching.max_num_trials 20000 --SiftMatching.min_inlier_ratio 0.1 --SiftMatching.use_gpu 0
+
+colmap mapper --database_path outputs/COMP90086/sfm_superpoint+superglue/database.db --image_path datasets/COMP90086/images/train --output_path outputs/COMP90086/sfm_superpoint+superglue/models --Mapper.num_threads 16
+
+
+```
+Bundle adjustment report
+------------------------
+    Residuals : 160
+   Parameters : 129
+   Iterations : 101
+         Time : 0.210723 [s]
+ Initial cost : 3.62448 [px]
+   Final cost : 0.431795 [px]
+  Termination : No convergence
+
+  => Filtered observations: 8
+  => Filtered images: 0
+
+Elapsed time: 4.034 [minutes]
+```
+
+
+## Triangulation (optional)
+
+colmap point_triangulator --database_path outputs/COMP90086/sfm_superpoint+superglue/database.db --image_path datasets/COMP90086/images/train --input_path outputs/COMP90086/
+
+--match_list_path outputs/COMP90086/pairs-manual-db-covis5.txt --match_type pairs --SiftMatching.max_num_trials 20000 --SiftMatching.min_inlier_ratio 0.1 --SiftMatching.use_gpu 0
 
 
 ## pixloc
