@@ -1,4 +1,7 @@
-# Create query_list_with_intrinsics.txt
+#! /usr/bin/env python3
+#
+# Source code used to create the file pairs-manual-db-covis5.txt and query_list_with_intrinsics.txt
+# (used by Hierachical-Localization toolkit)
 
 import csv
 
@@ -27,7 +30,6 @@ def generate_query_list_with_intrinsics_file():
             outfile.write(output_line + '\n')
 
 
-# TODO: Match top-20 pairs based on image coordinates
 def generate_pairs_db_covis_file():
 
     # based on https://raw.githubusercontent.com/cvg/Hierarchical-Localization/master/pairs/aachen_v1.1/pairs-db-covis20.txt
