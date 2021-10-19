@@ -1,5 +1,7 @@
 # Hierachical-Localization
 
+This folder contains a notebook based on the [Hierachical-Localization](https://github.com/cvg/Hierarchical-Localization) model to perform 3D reconstruction of museum scene (unfortunately, this approach was not successful).
+
 ## Preparation
 
 ### Prepare folder structure

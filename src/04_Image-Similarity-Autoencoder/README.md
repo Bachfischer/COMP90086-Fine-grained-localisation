@@ -1,5 +1,7 @@
 # Image-Similiarity-Autoencoder
 
+This folder contains a notebook with an Autoencoder implementation (PyTorch) to match test images with train images based on feature embeddings.
+
 
 ## Evaluation
 

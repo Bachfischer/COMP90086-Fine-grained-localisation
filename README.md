@@ -7,9 +7,9 @@ This repository contains the source code for the *Fine-grained localisation* Pro
 * `data/` -- Raw datasets published by COMP90086 competition organizers
 * `doc/` -- Documentation and project report (LaTeX source)
 * `src/` -- Source code used in Kaggle competition task
-    * `00_Experiments/` -- Folder containing various experiments and explorative data analysis
-    * `01_CNN_baseline/` -- Notebook with implementation of CNN model to predict image coordinates based on classification
-    * `02_SIFT/` --TBD
+    * `00_Experiments/` -- Folder containing various notebooks with explorative experiments and data analysis
+    * `01_CNN_baseline/` -- Notebook with implementation of CNN model (Tensorflow) to predict image coordinates based on a classification setting
+    * `02_SIFT/` -- Notebook with implementation of SIFT feature matching
     * `03_Hierachical-Localization/` -- Notebook based on [Hierachical-Localization](https://github.com/cvg/Hierarchical-Localization) model to perform 3D reconstruction of scene (not finished)
     * `04_Image-Similarity-Autoencoder/` -- Notebook with Autoencoder implementation (PyTorch) to match test images with train images based on feature embeddings
     * `05_SuperGlue/`-- Image processing script based on pre-trained [SuperGlue](https://github.com/magicleap/SuperGluePretrainedNetwork) model to match test images with train images

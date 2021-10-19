@@ -1,5 +1,7 @@
 # CNN_baseline
 
+This folder contains a notebook with the implementation of a CNN model (Tensorflow) to predict image coordinates based on a classification setting
+
 ## Evaluation
 
 | Experiment                                  | Filename                                              | Score    |
