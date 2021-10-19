@@ -128,4 +128,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-data/
+data/COMP90086_2021_Project_test
+data/COMP90086_2021_Project_train
