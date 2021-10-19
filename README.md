@@ -21,12 +21,15 @@ For further information, please refer to the project report attached to this sub
 
 ## Evaluation
 
+Below is an overview of the scores for our different models as reported on the public Kaggle leaderboard:
+
 | Experiment                                  | Filename                                              | Score    |
 |---------------------------------------------|-------------------------------------------------------|----------|
 | CNN_baseline (5 epochs)                     | `submission_CNN_baseline_5_epochs`                    | 52.35375 |
 | CNN_baseline (25 epochs)                    | `submission_CNN_baseline_5_epochs`                    | 52.44292 |
 | ImageSimilarity w/ Rescale (10 epochs)      | `submission_ImageSimilarity_w_Rescale_10_epochs.csv`  | 61.58458 |
 | ImageSimilarity w/ Crop (20 epochs)         | `submission_ImageSimilarity_w_Crop_20_epochs.csv`     | 62.23774 |
+| SuperGlue                                   | `submission_SuperGlue.csv`                            | **TBD**  |
 
 
 ## General setup instructions
