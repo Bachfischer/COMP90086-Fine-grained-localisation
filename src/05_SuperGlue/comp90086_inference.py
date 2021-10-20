@@ -7,7 +7,7 @@ import csv
 with open("comp90086_best_matches.txt") as f:
     best_matches_indexes = [int(x) for x in f.read().split()]
 
-train_df = pd.read_csv("./data/COMP90086_2021_Project_train/train.csv")
+train_df = pd.read_csv("../../data/COMP90086_2021_Project_train/train.csv")
 
 preds = []
 
@@ -22,7 +22,7 @@ for match_index in best_matches_indexes:
 test_filenames = []
 
 # read in the filenames of the test dataset
-with open("./data/COMP90086_2021_Project_test/imagenames.csv", newline='') as inputfile:
+with open("../../data/COMP90086_2021_Project_test/imagenames.csv", newline='') as inputfile:
     reader = csv.reader(inputfile)
     # skip header
     header = next(reader)

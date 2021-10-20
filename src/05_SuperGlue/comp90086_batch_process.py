@@ -12,6 +12,7 @@ from models.utils import (VideoStreamer,
 
 torch.set_grad_enabled(False)
 
+# Source code is based on https://github.com/magicleap/SuperGluePretrainedNetwork/blob/master/demo_superglue.py
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
