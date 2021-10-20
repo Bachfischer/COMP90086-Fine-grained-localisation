@@ -6,21 +6,21 @@ This folder contains an image matching and inference script based on the pre-tra
 
 | Experiment                                  | Filename                                              | Score    |
 |---------------------------------------------|-------------------------------------------------------|----------|
-| SuperGlue                                   | `submission_SuperGlue.csv`                            | TBD      |
+| SuperGlue                                   | `submission_SuperGlue.csv`                            | 6.37266  |
 
 
 ## Instructions
 
 **Perform image matching:**
 
-To perform the image matching process, run the command below:
+To perform the image matching process, run the command below. It will output a list of indexes corresponding to the best match in the training dataset in a text file called `comp90086_best_matches.txt`. 
 ```
 python comp90086_batch_process.py --train_images  ./data/COMP90086_2021_Project_train/train/ --test_images ./data/COMP90086_2021_Project_test/test --resize -1 --output_dir  dump_demo_sequence
 ```
 
 **Perform inference:**
 
-To run the inference step on the predicted matches and generate the submission file, execute the following script:
+To run the inference step on the predicted matches and generate the submission file, execute the following script. It uses the `comp90086_best_matches.txt` file to look-up the coordinates of the best matches in the training dataset and use these coordinates for the test images.
 ```
 python comp90086_inference.py
 ```
