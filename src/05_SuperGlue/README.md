@@ -2,6 +2,9 @@
 
 This folder contains an image matching and inference script based on the pre-trained [SuperGlue](https://github.com/magicleap/SuperGluePretrainedNetwork) model. It works by exhaustively matching the test images with all train images and outputs the best match candidate for every image.
 
+**Note:**
+*To reproduce the results reported in the paper, please first download the pre-trained SuperGlue model from this [link](https://github.com/magicleap/SuperGluePretrainedNetwork) and place it into the `model/` directory.*
+
 ## Evaluation
 
 | Experiment                                  | Filename                                              | Score    |
