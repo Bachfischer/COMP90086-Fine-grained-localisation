@@ -1,6 +1,6 @@
 # COMP90086-Fine-grained-localisation
 
-This repository contains the source code for the *Fine-grained localisation* Project that was part of the COMP90086 Computer Vision course at the University of Melbourne.
+This repository contains the source code for the *[Fine-grained localisation](https://www.kaggle.com/c/comp90086-2021/overview)* Project that was part of the COMP90086 Computer Vision course at the University of Melbourne.
 
 ## Project structure
 
